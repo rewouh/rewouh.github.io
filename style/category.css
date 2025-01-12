@@ -1,0 +1,12 @@
+.category {
+    display: flex;
+    flex-direction: column;
+    width: 70vw;
+    height: 95vh;
+    margin: auto auto;
+}
+
+.category_p {
+    color: white;
+    font-family: 'GaretBook';
+}

@@ -1,0 +1,51 @@
+#sidebar {
+    width: 25vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+    border-right: 1px solid white;
+}
+
+#sidebar_title {
+    margin-top: 10vh;
+    color: white;
+    font-weight: 600;
+    font-size: 2vw;
+    font-family: 'GaretBook';
+    letter-spacing: 0.2vw;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #5e6a6f;
+}
+
+#sidebar_subtitle {
+    color: white;
+    font-family: 'GaretBook';
+    font-size: 1vw;
+}
+
+#sidebar_sep {
+    color: white;
+    font-family: 'GaretBook';
+    letter-spacing: 0.5vw;
+    font-size: 2vw;
+    margin-bottom: 2.5vh;
+}
+
+.sidebar-category, .sidebar-subcategory {
+    color: white;
+    font-weight: 600;
+    font-size: 1.5vw;
+    transition: all 0.2s;
+    cursor: pointer;
+    font-family: 'GaretBook';
+}
+
+.sidebar-subcategory {
+    font-size: 0.9vw;
+}
+
+.sidebar-selected-category {
+    color: rgb(170, 170, 170);
+    font-size: 1.7vw;
+}

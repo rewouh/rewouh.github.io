@@ -1,0 +1,1 @@
+selectCategory('sidebar_category_welcome') 

@@ -1,0 +1,45 @@
+@font-face {
+    font-family: 'GaretBook';
+    src: url('../fonts/garet-book.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;  
+}
+
+@font-face {
+    font-family: 'GaretHeavy';
+    src: url('../fonts/garet-heavy.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;  
+}
+
+body {
+    background: linear-gradient(to right, #333333, #000000);
+    filter: contrast(110%);
+    height: 100vh;
+    margin: 0;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: rgb(66, 169, 243);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+a:hover {
+    color: rgb(52, 129, 184);
+}
+
+#page {
+    display: flex;
+    flex-direction: row;
+}
+
+.hidden {
+    display: none;
+}
