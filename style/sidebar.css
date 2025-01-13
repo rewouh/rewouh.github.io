@@ -49,3 +49,28 @@
     color: rgb(170, 170, 170);
     font-size: 1.7vw;
 }
+
+#sidebar_flags {
+    display: flex;
+    width: 12vw;
+    height: 10vh;
+    margin-top: auto;
+    margin-bottom: 5vh;
+}
+
+.sidebar_flag {
+    width: 3vw;
+    height: 2vw;
+    margin: auto auto;
+    border-radius: 5px;
+    transition: all 0.2s;
+}
+
+.sidebar_flag:hover {
+    transform: scale(110%);
+    opacity: 0.5;
+}
+
+.sidebar_flag_selected {
+    box-shadow: 0 0 3px #fff, 0 0 7px #fff, 0 0 12px #5e6a6f;
+}

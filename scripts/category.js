@@ -1,6 +1,9 @@
 const category = document.getElementById('category')
 let categoriesContents = {}
 
+let categoryPlaying = null
+let categoryPlayingTimeout = null
+
 const classesModifiersCodes = {
     '\u00AD': 'bold'
 }
@@ -18,7 +21,7 @@ async function categoryPlayableTypewritingText(data) {
     let deepData = JSON.parse(JSON.stringify(data))
 
     let speed = data['speed'] ? data['speed'] : 20
-    let text = data['text'].split('')
+    let text = data['text'][selectedLanguage] ? data['text'][selectedLanguage].split('') : noTranslationMessages[selectedLanguage].split('')
 
     let modifier = null
     let modifierClosingLength = null
@@ -27,7 +30,7 @@ async function categoryPlayableTypewritingText(data) {
 
     console.log(deepData)
 
-    while (text.length > 0) {
+    while (text.length > 0 && categoryPlaying !== null) {
         let c = text.shift()
 
         if (classesModifiersCodes[c]) {
@@ -83,16 +86,48 @@ async function categoryPlayableTypewritingText(data) {
             index += 1
         }
 
-        await timeout(speed)
+        let [promise, id] = _timeout(speed)
+
+        categoryPlayingTimeout = id
+        await promise
     }
 }
 
 async function playCategory(id) {
-    console.log(id)
-    console.log(categoriesContents[id])
+    categoryPlaying = id
 
     for (var [type, data] of categoriesContents[id]) {
+        if (categoryPlaying === null)
+            break;
+
         if (type === 'typewriting_text')
             await categoryPlayableTypewritingText(data)
     }
+}
+
+async function stopCategory() {
+    if (categoryPlaying === null)
+        return;
+
+    console.log(categoryPlaying)
+
+    categoryPlaying = null;
+    if (categoryPlayingTimeout) {
+        clearTimeout(categoryPlayingTimeout)
+        categoryPlayingTimeout = null
+    }
+
+    await timeout(10)
+
+    category.innerHTML = ''
+}
+
+async function reloadCategory() {
+    if (categoryPlaying === null)
+        return;
+
+    let old = categoryPlaying
+    
+    await stopCategory()
+    playCategory(old)
 }

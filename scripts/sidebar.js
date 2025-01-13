@@ -3,11 +3,12 @@ let sideBarSelectedCategory = null
 
 let sidebarCategories = {}
 
-function unselectCategory() {
+async function unselectCategory() {
     if (sideBarSelectedCategory === null)
         return;
 
     sidebarCategories[sideBarSelectedCategory]['dom'].classList.remove('sidebar-selected-category')
+    await stopCategory()
 
     for (var subcat of sidebarCategories[sideBarSelectedCategory]['subcategories'])
         subcat['dom'].classList.add('hidden')
@@ -15,11 +16,11 @@ function unselectCategory() {
     sideBarSelectedCategory = null
 } 
 
-function selectCategory(id) {
+async function selectCategory(id) {
     if (sideBarSelectedCategory === id)
         return;
 
-    unselectCategory()
+    await unselectCategory()
 
     let sideCat = document.getElementById(id)
 
