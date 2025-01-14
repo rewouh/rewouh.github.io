@@ -1,2 +1,7 @@
-selectLanguage('en')
-selectCategory('sidebar_category_welcome') 
+createCategories()
+createSpeeds()
+createFlags()
+
+setPlaySpeed(1)
+selectLanguage('us')
+selectCategory('welcome') 

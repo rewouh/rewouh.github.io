@@ -4,12 +4,18 @@ let categoriesContents = {}
 let categoryPlaying = null
 let categoryPlayingTimeout = null
 
-const classesModifiersCodes = {
-    '\u00AD': 'bold'
+const specialModifiersCodes = {
+     '\u00AD': ['classes', [], [['class', 'classes']]],
+     '\u200B': ['a', [['target', '_blank']], [['href', 'hyperlinks']]]
 }
 
-const specialModifiersCodes = {
-     '\u200B': ['a', [['target', '_blank']], [['href', 'hyperlinks']]]
+async function categoryTimeout(duration) {
+    console.log(duration / playSpeed)
+
+    let [promise, id] = _timeout(duration / playSpeed)
+
+    categoryPlayingTimeout = id
+    await promise
 }
 
 async function categoryPlayableTypewritingText(data) {
@@ -33,21 +39,7 @@ async function categoryPlayableTypewritingText(data) {
     while (text.length > 0 && categoryPlaying !== null) {
         let c = text.shift()
 
-        if (classesModifiersCodes[c]) {
-            if (modifier !== null) {
-                index += modifierClosingLength // length of </span>
-                modifier = null;
-            } else {
-                modifier = c
-                
-                let openingModifier = `<span class="${classesModifiersCodes[c]}">`
-                let closingModifier = '</span>'
-
-                p.innerHTML += openingModifier + closingModifier
-                index += openingModifier.length
-                modifierClosingLength = closingModifier.length
-            }
-        } else if (specialModifiersCodes[c]) {
+        if (specialModifiersCodes[c]) {
             if (modifier !== null)
             {
                 index += modifierClosingLength
@@ -84,12 +76,9 @@ async function categoryPlayableTypewritingText(data) {
         } else {
             p.innerHTML = stringInsert(p.innerHTML, c, index)
             index += 1
+        
+            await categoryTimeout(speed)
         }
-
-        let [promise, id] = _timeout(speed)
-
-        categoryPlayingTimeout = id
-        await promise
     }
 }
 

@@ -1,7 +1,15 @@
 let sidebar = document.getElementById('sidebar')
 let sideBarSelectedCategory = null
 
-let sidebarCategories = {}
+let playSpeed = 1
+let playSpeeds = [0.5, 1, 3]
+let lastPlaySpeed = null
+
+let sidebarCategories = {
+    'list': []
+}
+
+let sidebarFlags = ['us', 'fr', 'jp']
 
 async function unselectCategory() {
     if (sideBarSelectedCategory === null)
@@ -9,9 +17,6 @@ async function unselectCategory() {
 
     sidebarCategories[sideBarSelectedCategory]['dom'].classList.remove('sidebar-selected-category')
     await stopCategory()
-
-    for (var subcat of sidebarCategories[sideBarSelectedCategory]['subcategories'])
-        subcat['dom'].classList.add('hidden')
 
     sideBarSelectedCategory = null
 } 
@@ -22,53 +27,92 @@ async function selectCategory(id) {
 
     await unselectCategory()
 
-    let sideCat = document.getElementById(id)
+    let sideCat = sidebarCategories[id]['dom']
 
     sideCat.classList.add('sidebar-selected-category')
     sideBarSelectedCategory = id
 
-    for (var subcat of sidebarCategories[id]['subcategories'])
-        subcat['dom'].classList.remove('hidden')
-
-    playCategory(sidebarCategories[id]['cat_id'])
+    playCategory(id)
 }
 
-function registerCategories() {
-    let lastCategory = null
-    let lastCategorySubCategories = []
+function reloadSidebarCategoriesTitles() {
+    for (let cat_id of sidebarCategories['list']) {
+        let cat = sidebarCategories[cat_id]
+        let dom = cat['dom']
 
-    for (let cat of sidebar.children) {
-        if (cat.id.startsWith('sidebar_category')) 
-        {
-            if (lastCategory !== null)
-            {
-                sidebarCategories[lastCategory]['subcategories'] = lastCategorySubCategories
-                lastCategory = cat.id
-                lastCategorySubCategories  = []
-            }
-            else
-                lastCategory = cat.id
+        dom.innerHTML = cat['title'][selectedLanguage] ? cat['title'][selectedLanguage] : noTranslationMessages[selectedLanguage]
+    }
+}
 
-            cat.onclick = () => { selectCategory(cat.id); }
+function createCategories() {
+    for (let cat_id of sidebarCategories['list']) {
+        let dom = document.createElement('div')
+        dom.classList.add('sidebar-category')
+        dom.id = `sidebar_category_${cat_id}`
 
-            sidebarCategories[cat.id] = {
-                'dom': cat,
-                'name': cat.textContent,
-                'cat_id': cat.id.slice(17), // removing 'category_' from id
-            } 
-        } else if (cat.id.startsWith('sidebar_subcategory')) {
-            cat.classList.add('hidden')
+        let cat = sidebarCategories[cat_id]
+        cat['dom'] = dom
 
-            lastCategorySubCategories.push({
-                'dom': cat,
-                'name': cat.textContent,
-            })
-        }
+        dom.onclick = () => { selectCategory(cat_id); }
+
+        sidebar.appendChild(dom)
     }
 
-    sidebarCategories[lastCategory]['subcategories'] = lastCategorySubCategories
+    reloadSidebarCategoriesTitles()
 
     console.log(sidebarCategories)
 }
 
-registerCategories()
+function setPlaySpeed(speed) {
+    if (lastPlaySpeed)
+        lastPlaySpeed.classList.remove('sidebar-speed-selected')
+
+    let s = document.getElementById(`sidebar_speed_${speed}`)
+
+    s.classList.add('sidebar-speed-selected')
+    
+    playSpeed = speed
+    lastPlaySpeed = s
+}
+
+function createSpeeds() {
+    let cont = document.createElement('div')
+    cont.id = 'sidebar_speeds'
+
+    for (let s of playSpeeds) {
+        let but = document.createElement('div')
+        but.id = `sidebar_speed_${s}`
+        but.classList.add('sidebar-speed')
+
+        but.innerHTML = `x${s}`
+
+        but.onclick = () => { setPlaySpeed(s) }
+
+        cont.appendChild(but)
+    }
+
+    sidebar.appendChild(cont)
+}
+
+function createFlags() {
+    let flagContainer = document.createElement('div')
+    flagContainer.id = 'sidebar_flags'
+
+    sidebar.appendChild(flagContainer)
+
+    for (let lang of flags) {
+        let flag = document.createElement('img')
+        flag.src = `./images/flag_${lang}.png`
+        flag.classList.add('sidebar-flag')
+        flag.id = `sidebar_flag_${lang}`
+
+        flag.onclick = () => { 
+            selectLanguage(lang)
+            
+            reloadSidebarCategoriesTitles()
+            reloadCategory()
+        }
+
+        flagContainer.appendChild(flag)
+    }
+}

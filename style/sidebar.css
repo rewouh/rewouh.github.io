@@ -32,7 +32,7 @@
     margin-bottom: 2.5vh;
 }
 
-.sidebar-category, .sidebar-subcategory {
+.sidebar-category {
     color: white;
     font-weight: 600;
     font-size: 1.5vw;
@@ -41,24 +41,18 @@
     font-family: 'GaretBook';
 }
 
-.sidebar-subcategory {
-    font-size: 0.9vw;
-}
-
-.sidebar-selected-category {
-    color: rgb(170, 170, 170);
-    font-size: 1.7vw;
+#sidebar_flags, #sidebar_speeds {
+    display: flex;
+    flex-direction: row;
+    width: 12vw;
+    height: 10vh;
 }
 
 #sidebar_flags {
-    display: flex;
-    width: 12vw;
-    height: 10vh;
-    margin-top: auto;
     margin-bottom: 5vh;
 }
 
-.sidebar_flag {
+.sidebar-flag, .sidebar-speed {
     width: 3vw;
     height: 2vw;
     margin: auto auto;
@@ -66,11 +60,32 @@
     transition: all 0.2s;
 }
 
-.sidebar_flag:hover {
-    transform: scale(110%);
+.sidebar-flag:hover, .sidebar-category:hover, .sidebar-speed:hover {
+    transform: scale(115%);
     opacity: 0.5;
 }
 
-.sidebar_flag_selected {
-    box-shadow: 0 0 3px #fff, 0 0 7px #fff, 0 0 12px #5e6a6f;
+.sidebar-flag-selected, .sidebar-selected-category  {
+    transform: scale(115%);
+    opacity: 0.5;
+}
+
+#sidebar_speeds {
+    gap: 1vw;
+    margin-top: auto;
+    margin-bottom: auto;
+    align-items: center;
+}
+
+.sidebar-speed {
+    color: white;
+    font-family: 'GaretBook';
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.3vw;
+    cursor: pointer;
+}
+
+.sidebar-speed-selected {
+    border: 2px white solid;
 }
