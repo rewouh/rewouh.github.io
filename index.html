@@ -7,6 +7,9 @@
 
 Welcome to my website, everything here was handcrafted.
 
+Keep in mind I am not a front-end developer nor have I studied this field.
+HTML / CSS / JS were used, without libraries.
+
 Feel free to navigate in my not-so-spaghetti code.
 -->
 
@@ -17,11 +20,14 @@ Feel free to navigate in my not-so-spaghetti code.
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pierre Braud</title>
+    <link rel="stylesheet" href="./style/animations.css">
+    <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/category_welcome.css">
     <link rel="stylesheet" href="./style/category.css">
     <link rel="stylesheet" href="./style/sidebar.css">
     <link rel="stylesheet" href="./style/modifiers.css">
-    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./style/balatro_timeline.css">
+    <link rel="stylesheet" href="./style/images_row.css">
     <link rel="icon" href="./favicon.ico?" type="image/x-icon">
   </head>
   <body>
@@ -29,12 +35,36 @@ Feel free to navigate in my not-so-spaghetti code.
     <main>
         <div id="page">
           <div id="sidebar">
-            <p id="sidebar_title">PIERRE BRAUD</p>
-            <p id="sidebar_subtitle">JUNIOR DEVELOPER</p>
-            <p id="sidebar_sep">-----------</p>
+            <div id="sidebar_header">
+              <p id="sidebar_header_title">PIERRE BRAUD</p>
+              <p id="sidebar_header_subtitle">JUNIOR DEVELOPER</p>
+            </div>
+            <p id="sidebar_header_sep">-----------</p>
           </div>
           
-          <div id="category" class="category" />
+          <div id="category">
+            <div id="category_header"></div>
+            <div id="category_body"></div>
+          </div>
+        </div>
+
+        <div id="templates">
+          <div class="images-row">
+            <div class="images-row-unit"></div>
+          </div>
+          <div class="balatro-timeline">
+            <div class="balatro-timeline-left-arrow"><p>‹</p></div>
+            <div class="balatro-timeline-cards">
+              <div class="balatro-timeline-card">
+                <p class="balatro-timeline-card-year">2025</p>
+                <p class="balatro-timeline-card-type">personal</p>
+                <p class="balatro-timeline-card-title">EXAMPLE PROJECT</p>
+                <p class="balatro-timeline-card-desc">Example description</p>
+                <p class="balatro-timeline-card-techs">Tech1, Tech2</p>
+              </div>
+            </div>
+            <div class="balatro-timeline-right-arrow"><p>›</p></div>
+          </div>
         </div>
     </main>
 
@@ -43,8 +73,9 @@ Feel free to navigate in my not-so-spaghetti code.
     <script src="./scripts/sidebar.js"></script>
     <script src="./scripts/category.js"></script>
     <script src="./scripts/category_welcome.js"></script>
-    <script src="./scripts/category_whoami.js"></script>
-    <script src="./scripts/category_dev_story.js"></script>
+    <script src="./scripts/category_my_background.js"></script>
+    <script src="./scripts/category_projects.js"></script>
+    <script src="./scripts/category_qualifications.js"></script>
     <script src="./scripts/category_hit_me_up.js"></script>
     <script src="./scripts/index.js"></script>
   </body>

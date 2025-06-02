@@ -2,6 +2,6 @@ createCategories()
 createSpeeds()
 createFlags()
 
-setPlaySpeed(1)
+setPlaySpeed(3)
 selectLanguage('us')
 selectCategory('welcome') 

@@ -2,14 +2,14 @@ let sidebar = document.getElementById('sidebar')
 let sideBarSelectedCategory = null
 
 let playSpeed = 1
-let playSpeeds = [0.5, 1, 3]
+let playSpeeds = [1, 3, 100]
 let lastPlaySpeed = null
 
 let sidebarCategories = {
     'list': []
 }
 
-let sidebarFlags = ['us', 'fr', 'jp']
+let sidebarFlags = ['us', 'fr']
 
 async function unselectCategory() {
     if (sideBarSelectedCategory === null)
@@ -100,9 +100,9 @@ function createFlags() {
 
     sidebar.appendChild(flagContainer)
 
-    for (let lang of flags) {
+    for (let lang of sidebarFlags) {
         let flag = document.createElement('img')
-        flag.src = `./images/flag_${lang}.png`
+        flag.src = `./images/flags/flag_${lang}.png`
         flag.classList.add('sidebar-flag')
         flag.id = `sidebar_flag_${lang}`
 

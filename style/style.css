@@ -24,6 +24,11 @@ p {
     padding: 0;
 }
 
+* {
+    color: white;
+    font-family: 'GaretBook';
+}
+
 a {
     color: rgb(66, 169, 243);
     font-weight: 600;
@@ -41,5 +46,9 @@ a:hover {
 }
 
 .hidden {
+    display: none;
+}
+
+#templates {
     display: none;
 }

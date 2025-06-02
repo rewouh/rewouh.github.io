@@ -1,12 +1,38 @@
-.category {
+#category {
     display: flex;
     flex-direction: column;
-    width: 70vw;
-    height: 95vh;
+    width: 80vw;
+    height: 100vh;
     margin: auto auto;
+    gap: 2vh;
 }
 
-.category_p {
+#category_header {
+    display: flex;
+    width: 100%;
+    height: 25vh;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid rgba(100, 100, 100, 1);
+}
+
+#category_body {
+    margin-top: 3vh;
+    margin-left: 2vw;
+}
+
+#category_header_sep {
     color: white;
     font-family: 'GaretBook';
+    letter-spacing: 0.5vw;
+    font-size: 2vw;
+    margin: 0 auto;
 }
+
+.category_header_title {
+    margin: auto auto;
+    font-size: 2vw;
+    animation: 0.4s popin ease-out;    
+}
+
+.category_p {}

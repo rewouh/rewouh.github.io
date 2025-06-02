@@ -1,4 +1,4 @@
-#sidebar {
+#sidebar, #sidebar_header {
     width: 25vw;
     height: 100vh;
     display: flex;
@@ -8,8 +8,12 @@
     border-right: 1px solid white;
 }
 
-#sidebar_title {
-    margin-top: 10vh;
+#sidebar_header {
+    margin-top: 8vh;
+    height: 12vh;
+}
+
+#sidebar_header_title {
     color: white;
     font-weight: 600;
     font-size: 2vw;
@@ -18,18 +22,18 @@
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #5e6a6f;
 }
 
-#sidebar_subtitle {
+#sidebar_header_subtitle {
     color: white;
     font-family: 'GaretBook';
     font-size: 1vw;
 }
 
-#sidebar_sep {
+#sidebar_header_sep {
     color: white;
     font-family: 'GaretBook';
     letter-spacing: 0.5vw;
     font-size: 2vw;
-    margin-bottom: 2.5vh;
+    height: 6vh;
 }
 
 .sidebar-category {
